@@ -1,0 +1,198 @@
+<div class="container-fluid"> 
+    <div class="row">
+        <div class="col-12">
+            <app-alert [message]="alertMessage" [isAlertVisible]="showAlert"></app-alert>
+        </div>
+    </div>
+    <div class="row" *ngIf="isNewDiv">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <div class="row">
+                        <div class="col-6"> New</div>
+                        <div class="col-6 text-end">
+                            <button class="btn btn-sm btn-primary" (click)="isNewDiv = !isNewDiv">CLose</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for=""><b>Name</b></label>
+                                    <input type="text" class="form-control"  [(ngModel)]="employeeObj.name" placeholder="Enter Name">
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for=""><b>Contact No</b></label>
+                                    <input type="text" class="form-control" [(ngModel)]="employeeObj.contactNo" placeholder="Enter Contact No">
+                                </div>
+                                <div class="col-4">
+                                    <label for=""><b>Email</b></label>
+                                    <input type="text" class="form-control" [(ngModel)]="employeeObj.email" placeholder="Enter Email">
+                                </div>
+                                <div class="col-4">
+                                    <label for=""><b>City</b></label>
+                                    <input type="text" class="form-control" [(ngModel)]="employeeObj.city" placeholder="Enter City">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for=""><b>State</b></label>
+                                    <input type="text" class="form-control" [(ngModel)]="employeeObj.state" placeholder="Enter State">
+                                </div>
+                                <div class="col-4">
+                                    <label for=""><b>Pincode</b></label>
+                                    <input type="text" class="form-control" [(ngModel)]="employeeObj.pinCode" placeholder="Enter Pincode">
+                                </div>
+                                <div class="col-4">
+                                    <label for=""><b>Dasignation</b></label>
+                                    <select  class="form-control" [(ngModel)]="employeeObj.designation">
+                                        <option value="">Select</option>
+                                        <option value="Jr Developer">Jr Developer</option>
+                                        <option value="Sr Developer">Sr Developer</option>
+                                        <option value="Team Leader">Team Leader</option> 
+                                    </select>  
+                                </div> 
+                            </div> 
+                            <div class="row mt-4">
+                                <div class="col-6 text-end">
+                                    <button class="btn text-white btn-sm bg-secondary">Reset</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn text-white btn-sm bg-success" *ngIf="employeeObj.empId == 0" (click)="saveEmployee()">
+                                        <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm"></span>  Save Employee
+                                    </button> 
+                                    <button class="btn text-white btn-sm bg-success"  *ngIf="employeeObj.empId !== 0" (click)="updateEmployee()">
+                                        <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm"></span>  Update Employee
+                                    </button> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for=""><b>Name</b></label>
+                                    <input type="text" class="form-control" [(ngModel)]="empRelativeObj.name" placeholder="Enter Name">
+                                </div>
+                                <div class="col-3">
+                                    <label for=""><b>Relation</b></label>
+                                    <select  class="form-control" [(ngModel)]="empRelativeObj.relation">
+                                        <option value="">Select</option>
+                                        <option value="Mother">Mother</option>
+                                        <option value="Father">Father</option>
+                                        <option value="Sister">Sister</option>
+                                        <option value="Brother">Brother</option>
+                                    </select> 
+                                </div>
+                                <div class="col-3">
+                                    <label for=""><b>Age</b></label>
+                                    <input type="text" class="form-control" [(ngModel)]="empRelativeObj.age" placeholder="Enter Age">
+                                </div>
+                                <div class="col-1 mt-4 text-end">
+                                    <button class="btn btn-sm bg-primary" (click)="addRelative()">Add</button>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Relation</th>
+                                                <th>Age</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let relative of relativeList">
+                                                <td>{{relative.name}}</td>
+                                                <td>{{relative.relation}}</td>
+                                                <td>{{relative.age}}</td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                                </td>
+                                            </tr> 
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="row" *ngIf="!isNewDiv">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+            <div class="row">
+                <div class="col-6">List</div>
+                <div class="col-6 text-end">
+                    <button class="btn btn-sm btn-primary" (click)="isNewDiv = !isNewDiv">New</button>
+                </div>
+            </div>
+                </div>
+                <div class="card-body">
+                    <select name="" id="">
+                        <option *ngFor="let data of $myUser|async"> {{data.name}}</option>
+                    </select>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr No</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Designation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngIf="!isTableLoader">
+                                <tr *ngFor="let emp of employeeList;let index= index">
+                                    <td>{{index+1}}</td>
+                                    <td>{{emp.name}}</td>
+                                    <td>{{emp.contactNo}}</td>
+                                    <td>{{emp.email}}</td>
+                                    <td>{{emp.city}}</td>
+                                    <td>{{emp.state}}</td>
+                                    <td>{{emp.designation}}</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm" (click)="getEmployee(emp.empId)">Edit</button>
+                                        <button class="btn btn-sm btn-danger" (click)="onDelete(emp.empId)">Delete</button>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <ng-container *ngIf="isTableLoader">
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="spinner-border text-muted"></div>
+                                        <div class="spinner-border text-primary"></div>
+                                        <div class="spinner-border text-success"></div>
+                                        <div class="spinner-border text-info"></div>
+                                        <div class="spinner-border text-warning"></div>
+                                        <div class="spinner-border text-danger"></div>
+                                        <div class="spinner-border text-secondary"></div>
+                                        <div class="spinner-border text-dark"></div>
+                                        <div class="spinner-border text-light"></div>
+                                    </td>
+                                </tr> 
+                            </ng-container>
+                            
+                        </tbody>
+                    </table>
+                </div>
+          
+        </div>
+    </div>
+
+</div>

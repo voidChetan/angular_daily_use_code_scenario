@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center" style="height: 200px;">
+            <img class="img-fluid " style="height: 100%;" src="../../../assets/tod-3.png" alt="">
+        </div>
+    </div>
+    <div class="h-100 d-flex align-items-center justify-content-center"> 
+        <div class="wrapper">
+            <div class="task-input">
+                <i class="fa fa-bars"></i>
+                <input type="text" id="txtName" [(ngModel)]="todoObject.todoText" (ngModelChange)="onFilter($event)" placeholder="Add / Search Item">
+                <i class="fa fa-search search"  ></i>
+            </div>
+            <div class="controls">
+                <button class="clear-btn " (click)="addTodoItem()">Add</button>
+                <button class="delete-btn" *ngIf="isCheckboxChecked()" (click)="deleteCheckItems()">Delete</button>
+            </div>
+            <ul class="task-box">
+                <ng-container *ngIf="filteredItems.length === 0">
+                    <li class="task">
+                        <label for="0"> 
+                            <p class="">No ToDo Items Found</p>
+                        </label> 
+                    </li> 
+                </ng-container>
+                <ng-container *ngIf="filteredItems.length !==0">
+                    <li class="task" *ngFor="let item of filteredItems">
+                        <label for="0">
+                            <input type="checkbox" id="0" [(ngModel)]="item.isChecked" >
+                            <p class="">{{item.todoText}}</p>
+                        </label> 
+                    </li> 
+                </ng-container>
+                
+            </ul>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,22 @@
+#toll {
+
+    background-color: rgb(252, 252, 252);
+    height: 100vh;
+}
+
+.btn-color {
+    background-color: rgb(207, 203, 203);
+    width: 15%;
+    height: 50%;
+}
+
+.btn-color:hover {
+    background-color: skyblue;
+}
+.selectedVehcile {
+    border-bottom: 2px solid red;
+}
+
+ 
+
+ 
