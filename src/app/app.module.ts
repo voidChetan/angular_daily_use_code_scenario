@@ -13,6 +13,12 @@ import { ProductListComponent } from './miniProject/shoppingApp/product-list/pro
 import { CheckoutComponent } from './miniProject/shoppingApp/checkout/checkout.component';
 import { MultipleDataFormComponent } from './topics/multiple-data-form/multiple-data-form.component';
 import { AlertComponent } from './reusable/alert/alert.component';
+import { CandidatesComponent } from './topics/candidates/candidates.component';
+import { MyTableComponent } from './reusable/my-table/my-table.component';
+import { ToDoItemsComponent } from './miniProject/to-do-items/to-do-items.component';
+import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,12 @@ import { AlertComponent } from './reusable/alert/alert.component';
     ProductListComponent,
     CheckoutComponent,
     MultipleDataFormComponent,
-    AlertComponent
+    AlertComponent,
+    CandidatesComponent,
+    MyTableComponent,
+    ToDoItemsComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +43,7 @@ import { AlertComponent } from './reusable/alert/alert.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

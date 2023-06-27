@@ -6,8 +6,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-1"></div>
+    <div class="col-10">
         <table class="table table-bordered ">
             <thead>
                 <tr class="bg-success text-white">
@@ -15,21 +15,55 @@
                     <th>Name</th>
                     <th>User Name</th>
                     <th>Phone</th>
-                    <th>Website</th>
+                    <th>Website</th> 
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of filteredUsers;let srNo = index">
+                <tr *ngFor="let user of userArray;let srNo = index">
                     <td>{{srNo+1}}</td>
-                    <td> {{user.name}} </td>
-                    <td> {{user.username}}</td>
-                    <td> {{user.phone}} </td>
-                    <td> {{user.website}}</td>
+                    <td> 
+                        <div *ngIf="user.isEdit">
+                            <input type="text" [(ngModel)]="user.name">
+                            <div class="text-danger" *ngIf="validateField(user.name)">
+                                <span > Required </span>
+                            </div>
+                        </div>
+                        <div *ngIf="!user.isEdit">
+                            {{user.name}} 
+                        </div>
+                      </td>
+                    <td>
+                        <div *ngIf="user.isEdit">
+                            <input type="text" [(ngModel)]="user.username">
+                            <div class="text-danger" *ngIf="validateUserName(user.username) !== ''">
+                                <span > {{validateUserName(user.username)}} </span>
+                            </div>
+                        </div>
+                        <div *ngIf="!user.isEdit">
+                            {{user.username}} 
+                        </div>
+                       </td>
+                    <td>
+                        <div *ngIf="user.isEdit">
+                            <input type="text" [(ngModel)]="user.phone">
+                            <div class="text-danger" *ngIf="validateField(user.phone)">
+                                <span > Required </span>
+                            </div>
+                        </div>
+                        <div *ngIf="!user.isEdit">
+                            {{user.phone}} 
+                        </div> 
+                    </td>
+                    <td> {{user.website}}</td> 
                     <td class="text-center">
-                        <div>
-                            <i class="fa fa-pencil-square-o px-1" aria-hidden="true" (click)="onEdit(user)"></i>
-                            <i class="fa fa-trash-o" aria-hidden="true" (click)="onDelete(user)"></i>
+                        <div *ngIf="!user.isEdit">
+                            <i class="fa fa-pencil-square-o px-1" aria-hidden="true" (click)="onEdit(user)" ></i>
+                            <i class="fa fa-trash-o" aria-hidden="true" ></i>
+                        </div>
+                        <div *ngIf="user.isEdit">
+                            <button class="btn btn-success btn-sm mx-1" [disabled]="validateForm(user)">Update</button> 
+                            <button class="btn btn-success btn-sm" (click)="onCancel(user)" >Cancel</button> 
                         </div>
                     </td>
                 </tr>

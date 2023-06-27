@@ -1,0 +1,21 @@
+<table  class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sr No</th>
+            <th *ngFor="let heading of columnHeadingArray"> {{heading.text}}</th>
+            <th *ngIf="isAction">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of gridData;let index= index">
+            <td>{{index+1}}</td>
+            <td *ngFor="let heading of columnHeadingArray">
+                {{data[heading.fieldName]}}
+            </td>
+            <td *ngIf="isAction">
+                <button class="btn btn-sm btn-success" (click)="onEdit(data)">Edit</button>
+                <button class="btn btn-sm btn-danger mx-1" (click)="onDelete(data)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -5,28 +5,60 @@ import { AdvanceInlineEditingComponent } from './topics/inlineEditing/advance-in
 import { ParkingTicketToolComponent } from './miniProject/parking-ticket-tool/parking-ticket-tool.component';
 import { TodoAppComponent } from './miniProject/todo-app/todo-app.component';
 import { MultipleDataFormComponent } from './topics/multiple-data-form/multiple-data-form.component';
+import { CandidatesComponent } from './topics/candidates/candidates.component';
+import { ToDoItemsComponent } from './miniProject/to-do-items/to-do-items.component';
+import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'basic-inlineEditing',
-    component: BasicInlineEditingComponent
+    path:'',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
   {
-    path: 'advance-inlineEditing',
-    component: AdvanceInlineEditingComponent
+    path:'login',
+    component:LoginComponent
   },
   {
-    path: 'parking-ticket',
-    component: ParkingTicketToolComponent
-  },
-  {
-    path: 'todo-app',
-    component: TodoAppComponent
-  }, 
-  {
-    path: 'Employee',
-    component: MultipleDataFormComponent
+    path: '',
+    component:LayoutComponent,
+    children: [
+      {
+        path: 'basic-inlineEditing',
+        component: BasicInlineEditingComponent,
+        canActivate:[AuthGuard]
+      },
+      {
+        path: 'advance-inlineEditing',
+        component: AdvanceInlineEditingComponent,
+        canActivate:[AuthGuard]
+      },
+      {
+        path: 'parking-ticket',
+        component: ParkingTicketToolComponent
+      },
+      {
+        path: 'todo-app',
+        component: TodoAppComponent
+      }, 
+      {
+        path: 'Employee',
+        component: MultipleDataFormComponent
+      }, 
+      {
+        path: 'candidates',
+        component: CandidatesComponent
+      }, 
+      {
+        path: 'todo-items',
+        component: ToDoItemsComponent
+      }
+    ]
+
   }
+  
 ];
 
 @NgModule({

@@ -7,11 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./advance-inline-editing.component.css']
 })
 export class AdvanceInlineEditingComponent {
-
-  userArray: any[] = [];
-  filteredUsers: any []= [];
-  oldUserObj: any;
-  searchText: string ='';
+ 
+  userArray: any []= []; 
   constructor(private http: HttpClient ){
 
   }
@@ -22,23 +19,39 @@ export class AdvanceInlineEditingComponent {
 
   loadAllUser() {
     this.http.get("https://jsonplaceholder.typicode.com/users").subscribe((res: any)=>{
-      this.userArray = res;
-      this.filteredUsers= res;
+      this.userArray = res; 
     })
   }
-  onEdit(userObj: any) {
-    debugger; 
+  onEdit(item: any) {
+    item.isEdit = true;
   }
- 
-  onUpdate(userObj:any) {
-    debugger; 
+  validateField(item: any) {
+    if(item !== '') {
+      return false;
+    } else {
+      return true;
+    }
   }
-  onCancel(obj:any) {
-   
+  validateUserName(userName: string) {
+    if(userName  === '') {
+      return "Required";
+    } else {
+      if(userName.length >= 3) {
+        return "";
+      } else {
+        return "min 3 char";
+      }
+    }
   }
-
-  onDelete(obj:any) {
-    
+ validateForm(obj:any) {
+  if(obj.name != '' && obj.username != '' && obj.phone != '') {
+    return false;
+  } else {
+     return true;
   }
+ }
+ onCancel(item: any) {
+  item.isEdit = false;
+ }
 }
 

@@ -10,6 +10,12 @@ import { EmployeList, Employee } from 'src/app/class/employee';
 })
 export class MultipleDataFormComponent implements OnInit, OnDestroy {
 
+  columnArray: any []= [
+    {fieldName: 'name', text: 'Cadidate Name'},
+    {fieldName: 'contactNo', text: 'Mobile No'},
+    {fieldName: 'state', text: 'State'},
+    {fieldName: 'designation', text: 'Designation'}
+  ];
   isNewDiv: boolean = false;
   employeeObj: Employee = new Employee();
   employeeList: EmployeList[]=[];
@@ -64,7 +70,7 @@ export class MultipleDataFormComponent implements OnInit, OnDestroy {
       this.employeeList = res.data;
       setTimeout(() => {
         this.isTableLoader = false;
-      }, 2000);
+      }, 0);
      })
     )
   }
@@ -94,7 +100,7 @@ export class MultipleDataFormComponent implements OnInit, OnDestroy {
         }
         setTimeout(() => {
           this.showAlert =  false;
-        }, 2000);
+        }, 0);
       })
       )
     } 

@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-5">
+            <div class="wrapper">
+                <div class="task-input">
+                    <i class="fa fa-bars"></i>
+                    <input type="text" id="txtName" (ngModelChange)="onFilterItems($event)" [(ngModel)]="todoItem" placeholder="Add a new task">
+                </div>
+                <div class="controls">
+                    <button class="clear-btn" (click)="onAdd()">Add</button> 
+                </div>
+                <ul class="task-box"> 
+                    <li class="task" *ngFor="let todoItem of filteredArray">
+                        <label for="5"> 
+                            <p class="">{{todoItem}}</p>
+                        </label>
+                        <div class="settings">
+                            <button class="btn btn-sm btn-danger" (click)="onRemove(todoItem)">Remove</button> 
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+   
+</div>
