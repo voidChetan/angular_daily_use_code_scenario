@@ -10,7 +10,13 @@ import { ToDoItemsComponent } from './miniProject/to-do-items/to-do-items.compon
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AuthGuard } from './services/auth.guard';
-
+import { PortComponent } from './miniProject/port/port.component';
+import { InsuranceComplaintComponent } from './topics/crudOperation/withLocalStorage/insurance-complaint/insurance-complaint.component';
+import { AddInsuranceComplaintComponent } from './topics/crudOperation/withLocalStorage/add-insurance-complaint/add-insurance-complaint.component';
+import { LogicalUserRegistrationComponent } from './logical/logical-user-registration/logical-user-registration.component';
+import { StudRegReactiveFormComponent } from './logical/stud-reg-reactive-form/stud-reg-reactive-form.component';
+import { FileUploadComponent } from './topics/file-upload/file-upload.component';
+ 
 const routes: Routes = [
   {
     path:'',
@@ -38,6 +44,34 @@ const routes: Routes = [
       {
         path: 'parking-ticket',
         component: ParkingTicketToolComponent
+      },
+      {
+        path: 'port',
+        component: PortComponent
+      },
+      {
+        path: 'Logical-registration',
+        component: LogicalUserRegistrationComponent
+      },
+      {
+        path: 'reg-reactive',
+        component: StudRegReactiveFormComponent
+      },
+      {
+        path: 'InsuranceComplaint',
+        component: InsuranceComplaintComponent
+      },
+      {
+        path: 'AddComplaint',
+        component: AddInsuranceComplaintComponent
+      },
+      {
+        path: 'fileUpload',
+        component: FileUploadComponent
+      },
+      {
+        path: 'AddComplaint/:id',
+        component: AddInsuranceComplaintComponent
       },
       {
         path: 'todo-app',

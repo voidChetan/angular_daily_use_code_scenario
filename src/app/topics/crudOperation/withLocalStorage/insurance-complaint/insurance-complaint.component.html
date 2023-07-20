@@ -1,0 +1,40 @@
+<div class="conatainer">
+    <div class="row">
+        <div class="col-12 text-right">
+            <a routerLink="/AddComplaint" class="btn btn-sm btn-success">Add complain</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th> Name</th>
+                        <th>Contact No</th>
+                        <th>Email</th>
+                        <th>Complaint Against</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of complaintArray; let sr= index">
+                        <td>{{sr+1}}</td>
+                        <td>{{item.firstName}} {{item.lastName}}</td>
+                        <td>{{item.phoneno}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.complaintAgainst}}</td>
+                        <td>{{item.city}}</td>
+                        <td>{{item.state}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-success" (click)="onEdit(item.id)">Edit</button>
+                            <button class="btn btn-sm btn-success" (click)="onDelete(item.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

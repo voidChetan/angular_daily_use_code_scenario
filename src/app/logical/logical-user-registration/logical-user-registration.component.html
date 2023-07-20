@@ -1,0 +1,160 @@
+<section class="h-100 bg-dark">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <div class="col-xl-6 d-none d-xl-block">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                alt="Sample photo" class="img-fluid"
+                                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                                <h3 class="mb-5 text-uppercase">Student registration form</h3>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" (ngModelChange)="createFullNameByFirstName($event)"  [(ngModel)]="studentForm.firstName" id="form3Example1m" class="form-control " />
+                                            <label class="form-label" for="form3Example1m">First name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" (ngModelChange)="createFullNameByMiddleName($event)" [(ngModel)]="studentForm.middleName" id="form3Example1m" class="form-control " />
+                                            <label class="form-label" for="form3Example1m">Middle name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" (ngModelChange)="createFullNameByLastName($event)" [(ngModel)]="studentForm.lastName" id="form3Example1n" class="form-control " />
+                                            <label class="form-label" for="form3Example1n">Last name</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-outline">
+                                            <input type="text" [value]="fullName" disabled id="form3Example1m" class="form-control " />
+                                            <label class="form-label" for="form3Example1m">Full name</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="date"  (change)="onDobChange()" [(ngModel)]="studentForm.dob" id="form3Example1m" class="form-control " />
+                                            <label class="form-label" for="form3Example1m">Select DOB</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.age" disabled id="form3Example1m" class="form-control " />
+                                            <label class="form-label" for="form3Example1m">Age</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" *ngIf="studentForm.age > 18">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.licenceNo" id="form3Example1m" class="form-control " />
+                                            <label class="form-label" for="form3Example1m">Licence No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select class="select" [(ngModel)]="studentForm.education" class="form-control">
+                                            <option value="">Select Education</option>
+                                            <option value="12th">12th</option>
+                                            <option value="Degree">Degree</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="studentForm.education == 'Other'">
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.otherEducation" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">Enter Highest
+                                                Education</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.otherEducationPer" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">% of marks</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.otherEducationYr" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">Passing Year</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="studentForm.education == '12th'">
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.twelthPer" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">12th %</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.twelthPassingYear" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">Passing Year</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="studentForm.education == 'Degree'">
+                                    <div class="col-md-2">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.degree1stYrPer" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">1th Yr %</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.degree2ndYrPer" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">2nd yr %</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.degree3rdyrPer" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">3rd yr %</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-outline">
+                                            <input type="text" [(ngModel)]="studentForm.degreePassingYr" id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">Passing Year</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-outline">
+                                            <input type="date"  (change)="onEductaionYrChange()"  [(ngModel)]="studentForm.startDate"  id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">Start Of Year</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-outline">
+                                            <input type="date" (change)="onEductaionYrChange()" [(ngModel)]="studentForm.endDate"  id="form3Example1m1" class="form-control " />
+                                            <label class="form-label" for="form3Example1m1">End of Year</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end pt-3">
+                                    <button type="button" class="btn btn-light btn-lg">Reset all</button>
+                                    <button type="button" class="btn btn-warning btn-lg ms-2">Submit form</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

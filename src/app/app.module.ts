@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,12 @@ import { ToDoItemsComponent } from './miniProject/to-do-items/to-do-items.compon
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AuthGuard } from './services/auth.guard';
+import { PortComponent } from './miniProject/port/port.component';
+import { InsuranceComplaintComponent } from './topics/crudOperation/withLocalStorage/insurance-complaint/insurance-complaint.component';
+import { AddInsuranceComplaintComponent } from './topics/crudOperation/withLocalStorage/add-insurance-complaint/add-insurance-complaint.component';
+import { LogicalUserRegistrationComponent } from './logical/logical-user-registration/logical-user-registration.component';
+import { StudRegReactiveFormComponent } from './logical/stud-reg-reactive-form/stud-reg-reactive-form.component';
+import { FileUploadComponent } from './topics/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +41,20 @@ import { AuthGuard } from './services/auth.guard';
     MyTableComponent,
     ToDoItemsComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    PortComponent,
+    InsuranceComplaintComponent,
+    AddInsuranceComplaintComponent,
+    LogicalUserRegistrationComponent,
+    StudRegReactiveFormComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
