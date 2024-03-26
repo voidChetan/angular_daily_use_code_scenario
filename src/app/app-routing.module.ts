@@ -16,6 +16,13 @@ import { AddInsuranceComplaintComponent } from './topics/crudOperation/withLocal
 import { LogicalUserRegistrationComponent } from './logical/logical-user-registration/logical-user-registration.component';
 import { StudRegReactiveFormComponent } from './logical/stud-reg-reactive-form/stud-reg-reactive-form.component';
 import { FileUploadComponent } from './topics/file-upload/file-upload.component';
+import { JiraMachineTestComponent } from './miniProject/jira-machine-test/jira-machine-test.component';
+import { JiraBoardComponent } from './logical/jira-board/jira-board.component';
+import { UsingFormGroupComponent } from './topics/forms/using-form-group/using-form-group.component';
+import { UsingFormBuilderComponent } from './topics/forms/using-form-builder/using-form-builder.component';
+import { MovieBookingComponent } from './logical/movie-booking/movie-booking.component';
+import { MovieSeatBookingComponent } from './logical/movie-seat-booking/movie-seat-booking.component';
+import { AdvTodoAppComponent } from './miniProject/adv-todo-app/adv-todo-app.component';
  
 const routes: Routes = [
   {
@@ -46,8 +53,36 @@ const routes: Routes = [
         component: ParkingTicketToolComponent
       },
       {
+        path: 'adv-todo-app',
+        component: AdvTodoAppComponent
+      },
+      {
+        path: 'movie-booking',
+        component: MovieBookingComponent
+      },
+      {
+        path: 'movie-seat-booking',
+        component: MovieSeatBookingComponent
+      },
+      {
         path: 'port',
         component: PortComponent
+      },
+      {
+        path: 'UsingFormGroup',
+        component: UsingFormGroupComponent
+      },
+      {
+        path: 'UsingFormBuilder',
+        component: UsingFormBuilderComponent
+      },
+      {
+        path: 'jira-task',
+        component: JiraMachineTestComponent
+      },
+      {
+        path: 'jira-board',
+        component: JiraBoardComponent
       },
       {
         path: 'Logical-registration',

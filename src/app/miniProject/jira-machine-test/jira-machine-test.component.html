@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <h4 class="text-center mt-2">Retrospective Board </h4>
+    <div class="board">
+      <div class="row mt-3">
+        <div class="col-md-6" *ngFor="let type of noteTypes">
+          <div class="section">
+            <h5 class="text-center"> 
+              <span class="px-2 py-1" style="border-radius: 75%;background-color: rgb(15, 219, 15);cursor: pointer;"> <i
+                  class="fa fa-plus text-white" (click)="openNewNote(type)" data-bs-toggle="modal" data-bs-target="#myModal"></i></span>
+            </h5>
+            <div class="row mt-4">
+              <div class="col-md-3" *ngFor="let notee of filterNotesByType(type)">
+                <div class="card shadow mb-1" style="border-bottom-right-radius: 20px;background-color: #FEC694;"
+                  draggable="true">
+                  <div class="card-body mb-2 ellipsis">
+                   {{notee.note}}
+                  </div>
+                  <h6 class="ms-2">+ 0 <i class="fa fa-thumbs-up" aria-hidden="true"></i></h6>
+                </div>
+              </div> 
+            </div>
+          </div>
+        </div> 
+      </div> 
+    </div>
+  </div>
+
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content"> 
+        <div class="modal-body">
+          <textarea  [(ngModel)]="note"  rows="4"></textarea>
+        </div>  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="onSaveNote()">Save</button>
+        </div> 
+      </div>
+    </div>
+  </div>

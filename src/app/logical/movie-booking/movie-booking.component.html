@@ -1,0 +1,37 @@
+<div class="container"> 
+    <div class="row">
+        <div class="col-3 pt-2" *ngFor="let movie of movieList">
+            <div class="card" (click)="onSelectMovie(movie)">
+                <div class="card-header" [ngClass]="movie.movieName == selectedMovie?.movieName ? 'bg-success':''">
+                    {{movie.movieName}}
+                </div>
+                <div class="card-body" title="{{movie.description}}">
+                    {{movie.description |slice:0:50}}
+                </div>
+                <div class="card-footer">
+                    {{movie.ticketRate}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h5>Available shows</h5>
+    <div class="row">
+        <div class="col-3" *ngFor="let show of selectedMovie?.shows">
+            <button class="btn" [ngClass]="selectedShow == show? 'btn-success':'btn-secondary'" (click)="selectShow(show)">{{show}}</button>
+        </div>
+    </div>
+    <div class="row pt-2" *ngIf="selectedShow != ''">
+        <div class="col-3">
+            <input type="text" [(ngModel)]="ticketCount" placeholder="Enter Ticket Count"  class="form-control">
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary" (click)="bookTicket()" >Book Ticket</button>
+        </div>
+        <div class="col-5" *ngIf="ticketCost != 0">
+            <p>Selected Movie: <strong>{{selectedMovie?.movieName}}</strong></p>
+            <p>Selected Show: <strong>{{selectedShow}}</strong></p>
+            <p>For {{ticketCount}} Cost will Be: <strong>{{ticketCost}}</strong></p>
+        </div>
+    </div>
+</div>

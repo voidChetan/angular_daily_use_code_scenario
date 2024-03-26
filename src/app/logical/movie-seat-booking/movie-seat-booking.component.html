@@ -1,0 +1,81 @@
+<div class="parentDiv"> 
+ {{selectedMovie}}--
+    <div class="movie-container">
+        <label>Pick a movie:</label>
+        <select id="movie" (change)="onMovieChange()"  [(ngModel)]="selectedMovie">
+            <option *ngFor="let movie of movieList" [value]="movie.movieName"> {{movie.movieName}}</option>
+        </select>
+    </div>
+
+    <ul class="showcase">
+        <li>
+            <div class="seat"></div>
+            <small>N/A</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+        </li>
+        <li>
+            <div class="seat occupied"></div>
+            <small>Occupied</small>
+        </li>
+    </ul>
+
+    <div class="seat-container">
+        <div class="screen">
+            <img class="movieimg" [src]="selectedMovieObj?.movieBannerImage" alt="">
+        </div>
+
+        <div class="row" *ngFor="let rows of selectedMovieObj?.seatRows">
+
+             {{rows.row}} 
+            <div class="seat" [ngClass]="checkIfSeatIsBooked(rows.row, seat) ? 'selected': ''" (click)="bookSeat(rows.row, seat)" *ngFor="let seat of getSeatNoArray(rows.noOfSeats)"> {{seat}}</div>
+             
+        </div>
+        <!-- <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+        </div>
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+        </div>
+        <div class="row">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat occupied"></div>
+            <div class="seat"></div>
+        </div> -->
+    </div>
+
+    <p class="text">
+        You have selected <span id="count">0</span> seats for a price of $<span id="total">0</span>
+    </p>
+</div>

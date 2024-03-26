@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
  
@@ -25,6 +25,14 @@ import { AddInsuranceComplaintComponent } from './topics/crudOperation/withLocal
 import { LogicalUserRegistrationComponent } from './logical/logical-user-registration/logical-user-registration.component';
 import { StudRegReactiveFormComponent } from './logical/stud-reg-reactive-form/stud-reg-reactive-form.component';
 import { FileUploadComponent } from './topics/file-upload/file-upload.component';
+import { JiraMachineTestComponent } from './miniProject/jira-machine-test/jira-machine-test.component';
+import { JiraBoardComponent } from './logical/jira-board/jira-board.component';
+import { UsingFormGroupComponent } from './topics/forms/using-form-group/using-form-group.component';
+import { UsingFormBuilderComponent } from './topics/forms/using-form-builder/using-form-builder.component';
+import { CustomInterceptor } from './services/custom.interceptor';
+import { MovieBookingComponent } from './logical/movie-booking/movie-booking.component';
+import { MovieSeatBookingComponent } from './logical/movie-seat-booking/movie-seat-booking.component';
+import { AdvTodoAppComponent } from './miniProject/adv-todo-app/adv-todo-app.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +55,14 @@ import { FileUploadComponent } from './topics/file-upload/file-upload.component'
     AddInsuranceComplaintComponent,
     LogicalUserRegistrationComponent,
     StudRegReactiveFormComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    JiraMachineTestComponent,
+    JiraBoardComponent,
+    UsingFormGroupComponent,
+    UsingFormBuilderComponent,
+    MovieBookingComponent,
+    MovieSeatBookingComponent,
+    AdvTodoAppComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +71,11 @@ import { FileUploadComponent } from './topics/file-upload/file-upload.component'
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CustomInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

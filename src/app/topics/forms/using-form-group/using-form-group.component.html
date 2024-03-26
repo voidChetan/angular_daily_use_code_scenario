@@ -1,0 +1,61 @@
+<div class="mt-2 p-4 bg-secondary text-white rounded">
+    <h2>Reactive-Form Using Form-Group</h2>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Name</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of usersArray">
+                        <td>{{user.id}}</td>
+                        <td>{{user.name}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <button class="btn btn-sm btn-success" (click)="onEdit(user.id)">Edit</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <form [formGroup]="userForm" >
+                <div class="row">
+                    <div class="col-4">
+                        <label for="">Name</label>
+                        <input type="text" class="form-control" formControlName="name" >
+                        <div class="text-danger" *ngIf="userForm.controls?.['name'].touched">  
+                            <span *ngIf="userForm.controls?.['name'].errors?.['required']"> This Is Required</span>
+                            <span *ngIf="userForm.controls?.['name'].errors?.['minlength']"> MIn Char Required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <label for="">User Name</label>
+                        <input type="text" class="form-control" formControlName="username" >
+                    </div>
+                    <div class="col-4">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" formControlName="email" >
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button  class="btn btn-success" (click)="onSaveUser()"> Save User</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  
+</div>

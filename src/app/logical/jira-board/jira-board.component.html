@@ -1,0 +1,40 @@
+<div class="container con">
+    <div class="row pb-3 pt-3">
+        <div class="col-12 text-center">
+             <h1>{{myName}}</h1>
+             <br>
+             <app-alert [isAlertVisible]="true" [message]="myName"></app-alert>
+             <button class="btn btn-sm btn-success" (click)="ChangeVal()">Change Value</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 board">
+            <div class="kanban-board">
+                <div class="column" (dragover)="onDragOver($event)"  (drop)="onDrop($event,'To Do')">
+                    <div class="column-header">To Do</div>
+                    <div class="task" draggable="true" *ngFor="let item of filterTickets('To Do')" (dragstart)="onDragStart(item)">{{item.ticketId}}
+                        <br>
+                        {{item.ticketName}}
+                    </div> 
+                </div>
+                <div class="column" (dragover)="onDragOver($event)"  (drop)="onDrop($event,'In Progress')">
+                    <div class="column-header">In Progress</div>
+                    <div class="task" draggable="true" *ngFor="let item of filterTickets('In Progress')" (dragstart)="onDragStart(item)">{{item.ticketId}}
+                        <br>
+                        {{item.ticketName}}
+                    </div> 
+                </div>
+                <div class="column" (dragover)="onDragOver($event)"  (drop)="onDrop($event,'Done')">
+                    <div class="column-header">Done</div>
+                    <div class="task" draggable="true" *ngFor="let item of filterTickets('Done')" (dragstart)="onDragStart(item)">{{item.ticketId}}
+                        <br>
+                        {{item.ticketName}}
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-content"> 
+        <h2> Drag n Drop using Custom Code without using Library</h2> 
+    </div> 
+</div>
